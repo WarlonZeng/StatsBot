@@ -1,0 +1,65 @@
+﻿h1 {
+    text-align: center;
+}
+
+form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+label, input {
+    /* in order to define widths */
+    display: inline-block;
+}
+
+label {
+    width: 30%;
+    /* positions the label text beside the input */
+    text-align: right;
+}
+
+label + input {
+    width: 30%;
+    /* large margin-right to force the next element to the new-line
+       and margin-left to create a gutter between the label and input */
+    margin: 0 30% 0 2%;
+}
+
+/*input[type=submit] {
+    margin: 0 46% 0;
+}*/
+
+body {
+    font-size: 75%;
+    font-family:"Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
+
+#body {
+    clear: both;
+    margin: 0 auto;
+    max-width: 534px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 0.75em;
+    border: 0 none;
+    margin-top:35px;
+}
+
+#body td {
+    padding:15px 30px 15px 10px;
+}
+
+#body tr td:nth-child(1) {
+    font-weight:bold;
+}
+
+#body tr td:nth-child(2) {
+    width: 15em;
+}
+
+#address {
+    width:400px;
+}
