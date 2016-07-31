@@ -1,22 +1,35 @@
 ﻿# Baddie Detector
 BaddieDetector Website
 
-### Overview
+## Overview
 Baddie Detector is a website aimed at crawling Riot's API and returning particular statistics aimed at determining if the user is "bad" or not. 
-This website is entirely objectively subjective and built for fun (non-profit).
+This website is entirely objectively subjective and built to train my development skills (non-profit).
+Website is entirely one-page.
 
-### How to run
+## Technologies involved
+MEAN Stack
+Currently MongoDB and Angular.js are not employed yet.
+
+## Techniques involved
+ajax calls
+JSON parsing
+
+## Usuage
+User will search a summoner's name and statistics from Riot's API will be returned. 
+
+## How to run
 Set app.js as Node.js start-up file.
 Microsoft Visual Studio 2015 build and debug node project.
 
-### Developer-dependency
+## Developer-dependency
 Microsoft Visual Studio 2015 Community was used to run & debug this project.
 
-### npm-Dependencies
+## npm-dependencies
+###Latest Versions 7/31/2016
 1. body-parser
 2. cookie-parser
 3. debug
-4.express
+4. express
 5. jade
 6. method-override
 7. mongodb
@@ -25,16 +38,19 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 10. serve-static
 11. stylus
 
-### Bower-Dependencies
+## Bower-dependencies
+### Latest Versions 7/31/2016
 1. jQuery
 
-### Views
-User will search a summoner's name and statistics from Riot's API will be returned. 
-
-### Planned features
+## Planned features
 Logging IP Address, number of searches, etc.
 Linking and managing a database system (MongoDB).
 Decorate the front-end via Angular.js, bootstrap.
 Programming internal timer to prevent website's APIKey over-the-limit APIKey abuse (it's not a production key).
 May switch out jQuery.js for Vanillia.js or take it out completely.
 May change system deployment to UNIX and use gulp to run Node.js.
+TCP connection via socket.io npm module to livecheck if API key is ready to use.
+
+## Changelog
+v1.0.0 - BaddieDetector website initiated with base features.
+v1.0.1 - Logs last time APIKey was used into server as a .txt file.

@@ -90,9 +90,33 @@ function getSummonerCoops(region, summonerID, APIKey) {
     });
 }
 
+//function getAPIKeyLastUsed() {
+//    $.ajax({
+//        async: true,
+//        url: '/APIKeyLastUsed.txt',
+//        dataType: "string",
+//        success: function (data) {
+//            console.alert(data);
+//        }
+//    });
+//}
+
+function setAPIKeyLastUsed() {
+    $.ajax({
+        async: true, //type:get
+        url: '/public/APIKeyLastUsed.js', // use python or php, maybe link to js to create file. javascript cannot write file to server from client side, even with ajax call. ajax call can only read.
+        success: function (data) {
+            console.log(data)
+        }
+    });
+}
+
 function requestSummonerData() { // "main" function
     var region = "na";
     var APIKey = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7';
+
+    setAPIKeyLastUsed();
+
     var summonerName = ((document.getElementById('summoner_name')).value).toLowerCase();
     summonerName = summonerName.replace(/ /g, '')
     console.log(summonerName);

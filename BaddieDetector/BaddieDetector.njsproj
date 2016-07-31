@@ -32,20 +32,19 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\championMastery.js" />
-    <Compile Include="routes\index.js" />
-    <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
+    <Compile Include="public\APIKeyLastUsed.js" />
     <Content Include="package.json" />
+    <Content Include="public\APIKeyLastUsed.txt" />
     <Content Include="public\index.css" />
     <Content Include="public\index.html" />
     <Content Include="README.md" />
     <Content Include="typings.json" />
-    <Content Include="views\index.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\assets\" />
-    <Folder Include="routes\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\body-parser\" />
