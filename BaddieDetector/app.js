@@ -25,27 +25,36 @@ app.use(methodOverride());
 
 require('./public/APIKeyLastUsed.js')(app); // make test.js server-sided; routing GET everytime test.js invoked
 
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    //console.error(err.stack);
-    next(err);
-});
+//app.use(function (req, res, next) {
+//    var err = new Error('Not Found');
+//    err.status = 404;
+//    //console.error(err.stack);
+//    next(err);
+//});
 
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
-        res.status(err.status || 500).json('error', {
-            message: err.message,
-            error: err
-        });
+
+        if (res.status(err.status || 500)) {
+            console.log(err.status);
+            res.send('error', {
+                message: err.message,
+                error: err
+            });
+        }
     });
-}
+};
 
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500).json('error', {
-        message: err.message,
-        error: {}
-    });
+
+    if (res.status(err.status || 500)) {
+        console.log(err.status);
+        res.send({
+            status: 500,
+            message: 'internal error',
+            type: 'internal'
+        });
+    }
 });
 
 http.createServer(app).listen(app.get('port'), function () {

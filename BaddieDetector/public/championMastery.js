@@ -5,7 +5,7 @@
     $.ajax({
         async: false, // This will make call synchronous
         url: URL,
-        dataType: "json",
+        dataType: "JSON",
         success: function (data) {
             summonerID = data[summonerName]['id'];
         }
@@ -31,7 +31,7 @@ function getSummonerCoops(region, summonerID, APIKey) {
     $.ajax({
         async: true, // async here, dont need to wait
         url: URL,
-        dataType: "json",
+        dataType: "JSON",
         success: function (data) {
             data = data['playerStatSummaries'];
             var size = Object.keys(data).length;
@@ -90,38 +90,34 @@ function getSummonerCoops(region, summonerID, APIKey) {
     });
 }
 
-//function getAPIKeyLastUsed() {
-//    $.ajax({
-//        async: true,
-//        url: '/APIKeyLastUsed.txt',
-//        dataType: "string",
-//        success: function (data) {
-//            console.alert(data);
-//        }
-//    });
-//}
-
-function setAPIKeyLastUsed() {
+function getAPIStatusAndKey() {
+    var object;
     $.ajax({
-        async: true, //type:get
+        async: false, //type:get
         url: '/public/APIKeyLastUsed.js', // use python or php, maybe link to js to create file. javascript cannot write file to server from client side, even with ajax call. ajax call can only read.
+        //dataType = "JSON",
         success: function (data) {
-            console.log(data)
+            object = data;
         }
     });
+    return object;
 }
 
 function requestSummonerData() { // "main" function
     var region = "na";
-    var APIKey = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7';
+    var APIKeyObject = getAPIStatusAndKey();
+    var APIKey = APIKeyObject['APIKey'];
+    var timeToWait = APIKeyObject['WaitTime'];
+    var isAPIKeyReady = APIKeyObject['APIKeyReadyStatus'];
 
-    setAPIKeyLastUsed();
+    if (isAPIKeyReady) {
+        var summonerName = (((document.getElementById('summoner_name')).value).toLowerCase().replace(/ /g, ''));
+        var summonerID = getSummonerID(region, summonerName, APIKey);
+        getSummonerCoops(region, summonerID, APIKey);
 
-    var summonerName = ((document.getElementById('summoner_name')).value).toLowerCase();
-    summonerName = summonerName.replace(/ /g, '')
-    console.log(summonerName);
-
-    //var summonerID = getSummonerID(region, summonerName, APIKey); // get summoner's ID. needed for summoner's champion data.
-    var summonerID = getSummonerID(region, summonerName, APIKey);
-    getSummonerCoops(region, summonerID, APIKey);
+        console.log('Served: ' + summonerName);
+    }
+    else {
+        alert('API key not ready, try again in ' + timeToWait + 's');
+    }   
 }
