@@ -10,12 +10,13 @@ Website is entirely one-page.
 
 ## Technologies involved
 * MEAN Stack
+
 > Currently, MongoDB and Angular.js are not employed yet.
 
 ## Techniques involved
-* ajax calls
+* Ajax calls
 * JSON parsing
-* file systems
+* File systems
 
 ## Usuage
 User will search a summoner's name and statistics from Riot's API will be returned. 
