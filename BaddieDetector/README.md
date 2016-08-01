@@ -63,10 +63,13 @@ May change system deployment to UNIX and use gulp to run Node.js.
 TCP connection via socket.io npm module to livecheck if API key is ready to use.
 
 ## Changelog
-v1.0.0 : BaddieDetector website initiated with base features.
+### v1.0.0: 
+BaddieDetector website initiated with base features.
 
-v1.0.1 : Logs last time APIKey was used into server as a .txt file.
+### v1.0.1: 
+Logs last time APIKey was used into server as a .txt file.
 
-v1.0.2 : API key now hidden in server. 
+### v1.0.2: 
+API key now hidden in server. 
 Created 2400 milliseconds delay per search server-wide to prevent API rate limit abuse (Riot Games' rates are 1.2 calls/sec continuous). 
 Alerts user if any search was made within 2400ms to the server and specifies time left for next available search.

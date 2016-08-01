@@ -52,7 +52,6 @@
     <Folder Include="typings\globals\debug\" />
     <Folder Include="typings\globals\express-serve-static-core\" />
     <Folder Include="typings\globals\express\" />
-    <Folder Include="typings\globals\jade\" />
     <Folder Include="typings\globals\method-override\" />
     <Folder Include="typings\globals\mime\" />
     <Folder Include="typings\globals\mongodb\" />
@@ -69,7 +68,6 @@
     <TypeScriptCompile Include="typings\globals\debug\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express-serve-static-core\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
-    <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\method-override\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mime\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mongodb\index.d.ts" />
