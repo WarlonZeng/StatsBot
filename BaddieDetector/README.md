@@ -22,9 +22,8 @@ Website is entirely one-page.
 User will search a summoner's name and statistics from Riot's API will be returned. 
 
 ## How to run
-Set app.js as Node.js start-up file.
-
-Microsoft Visual Studio 2015 build and debug node project.
+1. Set app.js as Node.js start-up file.
+2. Microsoft Visual Studio 2015 build and debug node project.
 
 ## Developer-dependency
 Microsoft Visual Studio 2015 Community was used to run & debug this project.
