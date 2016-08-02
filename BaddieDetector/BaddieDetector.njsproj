@@ -32,17 +32,15 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\championMastery.js" />
-    <Compile Include="bin\www" />
     <Compile Include="public\APIKeyLastUsed.js" />
     <Content Include="package.json" />
-    <Content Include="public\APIKeyLastUsed.txt" />
+    <Content Include="public\favicon.ico" />
     <Content Include="public\index.css" />
     <Content Include="public\index.html" />
     <Content Include="README.md" />
     <Content Include="typings.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\assets\" />
     <Folder Include="typings\" />
@@ -52,6 +50,7 @@
     <Folder Include="typings\globals\debug\" />
     <Folder Include="typings\globals\express-serve-static-core\" />
     <Folder Include="typings\globals\express\" />
+    <Folder Include="typings\globals\jade\" />
     <Folder Include="typings\globals\method-override\" />
     <Folder Include="typings\globals\mime\" />
     <Folder Include="typings\globals\mongodb\" />
@@ -68,6 +67,7 @@
     <TypeScriptCompile Include="typings\globals\debug\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express-serve-static-core\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\method-override\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mime\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\mongodb\index.d.ts" />

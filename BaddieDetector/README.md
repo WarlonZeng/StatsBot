@@ -66,3 +66,8 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 * Increased API key security:
  * Created 2400 milliseconds delay per search server-wide to prevent API rate limit abuse (Riot Games' rates are 1.2 calls/sec continuous). 
  * Alerts user if any search was made within 2400ms to the server and specifies time left for next available search.
+
+### v1.0.3:
+* Added favicon.ico.
+* Decreased server response time:
+ * Accessing last search via file-system logging is performed with realtime variables.
