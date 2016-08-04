@@ -47,13 +47,21 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 1. jQuery
 
 ## Planned features
+### High-priority:
+* TCP connection via socket.io npm module to livecheck if API key is ready to use (might be done with eventlistener instead).
 * Logging IP Address, number of searches, etc.
-* Linking and managing a database system (MongoDB). 
 * Decorate the front-end via Angular.js, bootstrap.
+* Multi-page dashboard w/ sidebar website overhaul.
 * Programming internal timer to prevent website's APIKey over-the-limit APIKey abuse (it's not a production key).
+ * DONE! v1.0.2.
+
+### Medium-priority:
+* Linking and managing a database system (MongoDB). 
+* Enabling cookies/caches/localstorage for returning users.
+
+### Low-priority:
 * May switch out jQuery.js for Vanillia.js or take it out completely.
 * May change system deployment to UNIX and use gulp to run Node.js.
-* TCP connection via socket.io npm module to livecheck if API key is ready to use.
 
 ## Changelog
 ### v1.0.0: 
@@ -71,3 +79,8 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 * Added favicon.ico.
 * Decreased server response time:
  * Accessing last search via file-system logging is performed with realtime variables.
+
+### v1.0.4:
+* Redesigned search box:
+ * Added a search icon for submitting input.
+ * Added outline with curved edges.

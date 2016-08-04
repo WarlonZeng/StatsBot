@@ -4,7 +4,7 @@
 var APIKey = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7';
 var rateLimit = 2400; // milliseconds
 var prevSearchTimeMilliseconds = new Date().getTime(); // can do -rateLimit to search as soon as server starts 
-var timeToWait = 0; // user receives this as part of the response package. 0 = 0s to wait, meaning search has been served.
+var timeToWait; // user receives this as part of the response package. 0 = 0s to wait, meaning search has been served.
 var APIKeyObject;
 
 function getLastSearchTimeDiff(prevSearchTimeMilliseconds, currentSearchTimeMilliseconds) {
@@ -46,6 +46,7 @@ module.exports = function (app) { // EVERYTIME THIS SCRIPT IS CALLED from browse
 
         if (APIKeyReadyStatus) {
             logAPIKeyUse(currentSearchTime); // logs current time
+            timeToWait = 0;
         }
         else
             timeToWait = Math.abs(rateLimit - timeDiff) / 1000;

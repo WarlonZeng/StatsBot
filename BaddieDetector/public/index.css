@@ -7,31 +7,25 @@ form {
     margin: 0 auto;
 }
 
-label, input {
-    /* in order to define widths */
-    display: inline-block;
+.wrapper {
+    align-content: center;
+    border:1px solid #000;
+    display:inline-block;
+    position: relative;
+    border-radius: 5px;
 }
 
-label {
-    width: 30%;
-    /* positions the label text beside the input */
-    text-align: right;
+input, text {
+    outline-width: 0;
+    background-color:transparent;
+    border:0;       
+    padding-right: 5px;
+    padding-left: 5px;
 }
-
-label + input {
-    width: 30%;
-    /* large margin-right to force the next element to the new-line
-       and margin-left to create a gutter between the label and input */
-    margin: 0 30% 0 2%;
-}
-
-/*input[type=submit] {
-    margin: 0 46% 0;
-}*/
 
 body {
     font-size: 75%;
-    font-family:"Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
 }
 
 #body {

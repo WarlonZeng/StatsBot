@@ -11,7 +11,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5e9b5edf-ba51-4771-a15d-495e04d288af</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <StartupFile>app.js</StartupFile>
     <SearchPath>
     </SearchPath>
@@ -34,6 +35,7 @@
     <Compile Include="public\championMastery.js" />
     <Compile Include="public\APIKeyLastUsed.js" />
     <Content Include="package.json" />
+    <Content Include="public\assets\searchIcon.png" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.css" />
     <Content Include="public\index.html" />
