@@ -76,7 +76,7 @@ OTP or generally good. Scrapped sidebar with top-side navigation, another bootst
 MEAN STACK > ASP.NET. Bower is fully implemented with visual studio 2015 update 3. MongoDB not going to be implemented anytime soon, my site may be a 100% dynamic site. 
 MVC revoked in favor of SOA architecture. !! I MAY MAKE THIS SITE A FULLY DISTRIBUTED SYSTEM IN THE FUTURE !! With Cookies/Cache/LocalStorage/Sessions and advanced multithreading.
 
-TL;DR: May change Express.js + Node.js into ASP.NET 5. 
+TL;DR: May change Express.js + Node.js into ASP.NET 5.
 
 ## Planned features
 ### High-priority:
