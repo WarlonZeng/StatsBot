@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <!--<link href="../css/summary.css" rel="stylesheet">-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Stats Bot</title>
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom Fonts -->
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- jQuery -->
+    <script src="../bower_components/jQuery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function (event) {
+            $("#summonerName").keyup(function (event) {
+                if (event.which == 13) {
+                    this.form.submit();
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <!-- action = perform javascript function; THE INPUT IS APPENDED TO THE URL. PARSE IT. -->
+                <form name="search"
+                      style="color: black; font-size: 150%; text-align: center"
+                      action="tabs/index.html"
+                      method="get">
+                    <br>
+                    <div class="input-group custom-search-form">
+                        <input type="text"
+                               class="form-control"
+                               name="summoner"
+                               placeholder="Search Summoner's Name..."
+                               autofocus>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default"
+                                    type="button"
+                                    onclick="form.submit()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
