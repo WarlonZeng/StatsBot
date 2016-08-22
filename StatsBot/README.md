@@ -76,6 +76,9 @@ OTP or generally good. Scrapped sidebar with top-side navigation, another bootst
 MEAN STACK > ASP.NET. Bower is fully implemented with visual studio 2015 update 3. MongoDB not going to be implemented anytime soon, my site may be a 100% dynamic site. 
 MVC revoked in favor of SOA architecture. !! I MAY MAKE THIS SITE A FULLY DISTRIBUTED SYSTEM IN THE FUTURE !! With Cookies/Cache/LocalStorage/Sessions and advanced multithreading.
 
+## 8/22/16
+Primary chart nearly completion. Will try to improve processing speed after getting functionality down.
+
 TL;DR: May change Express.js + Node.js into ASP.NET 5.
 
 ## Planned features
@@ -128,3 +131,7 @@ TL;DR: May change Express.js + Node.js into ASP.NET 5.
 ### v2.0.0:
 * Removed previous user features
 * Now shows a graph that can tell if user is an One Trick Pony or has big champion pool! 
+
+### v2.1.0:
+* Improved chart interface!
+ * Now you now the exact champion on sight

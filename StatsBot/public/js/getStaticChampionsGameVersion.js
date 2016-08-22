@@ -6,17 +6,26 @@ var championsGameVersionData;
 
 https.get(URL, (res) => {
     res.setEncoding('utf8');
-    res.on('data', (d) => {
-        //version = d;
-
-        //str1pos = version.indexOf('"') + 1;
-        //str1 = version.substr(str1pos, 10);
-        //str2pos = str1.indexOf('"');
-        //version = version.substr(str1pos, str2pos)
-        //return version;
-        championsGameVersionData = JSON.parse(d);
-        return championsGameVersionData;
+    var body = '';
+    res.on('data', function (chunk) {
+        body += chunk;
     });
+
+    res.on('end', function () {
+        championsGameVersionData = JSON.parse(body);
+        
+    });
+    //res.on('data', (d) => {
+    //    //version = d;
+
+    //    //str1pos = version.indexOf('"') + 1;
+    //    //str1 = version.substr(str1pos, 10);
+    //    //str2pos = str1.indexOf('"');
+    //    //version = version.substr(str1pos, str2pos)
+    //    //return version;
+    //    championsGameVersionData = JSON.parse(d);
+    //    //return championsGameVersionData;
+    //});
 });
 
 module.exports = function (app) { // EVERYTIME THIS SCRIPT IS CALLED from browser
