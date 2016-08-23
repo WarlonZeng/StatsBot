@@ -79,6 +79,9 @@ MVC revoked in favor of SOA architecture. !! I MAY MAKE THIS SITE A FULLY DISTRI
 ## 8/22/16
 Primary chart nearly completion. Will try to improve processing speed after getting functionality down.
 
+## 8/23/16
+HTML5 > SVG. The future is HTML5. Planning features for quick search with caches/cookies. Probably database first though.
+
 TL;DR: May change Express.js + Node.js into ASP.NET 5.
 
 ## Planned features
@@ -135,3 +138,6 @@ TL;DR: May change Express.js + Node.js into ASP.NET 5.
 ### v2.1.0:
 * Improved chart interface!
  * Now you now the exact champion on sight
+
+### v2.1.1
+* Data points are now circles!

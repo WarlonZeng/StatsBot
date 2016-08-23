@@ -164,89 +164,29 @@ function drawChart() {
 
     var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
-    function placeMarkers(dataTable) {
+    function placeMarkers(dataTable) { // google charts create SVG elements with object properity 'circle'. 
         var i = 0;
         var cli = this.getChartLayoutInterface();
         var chartArea = cli.getChartAreaBoundingBox();
 
-        //console.log(championArray);
-        //console.log(data);
-        $('circle').each(function () {
-            //var $c = $(this);
-            var link = "http://" + "ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/" + championArray[i][2] + ".png";
-            //image.setAttributeNS("http://www.w3.org/1999/xlink", "href", "https://" + "cdn3.iconfinder.com/data/icons/location-map/512/pin_marker_star-512.png");
-            //circles.setAttribute("style", "background-image: url(" + "https://" + "cdn3.iconfinder.com/data/icons/location-map/512/pin_marker_star-512.png)");
-            //img.css({
-            //top: Math.floor(cli.getYLocation(dataTable.getValue(i, 1))) - 10 + "px",
-            //left: Math.floor(cli.getXLocation(5)) - 10 + "px"
-            //});
-
-            var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-            svgimg.setAttributeNS(null, 'height', '16');
-            svgimg.setAttributeNS(null, 'width', '16');
-            svgimg.setAttributeNS('http://' + 'www.w3.org/1999/xlink', 'href', link);
-            svgimg.setAttributeNS(null, 'x', Math.floor(cli.getXLocation(dataTable.getValue(i, 0))) - 7);
-            svgimg.setAttributeNS(null, 'y', Math.floor(cli.getYLocation(dataTable.getValue(i, 1))) - 7);
-            //svgimg.setAttributeNS(null, 'style', 'r: 8');
-            //svgimg.style.r = '8';
-            this.parentElement.appendChild(svgimg);
-
-            //console.log(dataTable.getValue(26, 1));
-            //console.log(Math.floor(cli.getXLocation(dataTable.getValue(25, 0))));
-            //console.log(Math.floor(cli.getYLocation(dataTable.getValue(25, 1))));
-            console.log(championArray[i][2]);
-            i++;
-        });
+        for (var i = 0; i < championArray.length; i++) {
+            var link = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/" + championArray[i][2] + ".png";
+            var img = document.createElement('img');
+            $('#chart_div').append(img);
+            img.src = link;
+            img.height = 16;
+            img.width = 16;
+            img.style = (
+                'border-radius: 50%; ' +
+                'position: absolute; ' +
+                'left: ' + (Math.floor(cli.getXLocation(dataTable.getValue(i, 0))) - 7.5) + 'px; ' +
+                'top: ' + (Math.floor(cli.getYLocation(dataTable.getValue(i, 1))) - 7.5) + 'px; ' +
+                'pointer-events: none'
+            );
+        }
     }
 
     google.visualization.events.addListener(chart, 'ready',
         placeMarkers.bind(chart, data));
-
-    //google.visualization.events.addListener(chart, 'ready', function () {
-    //    placeMarkers.bind(chart, championArray);
-
-        //var i = 0;
-        //var cli = this.getChartLayoutInterface();
-        //var chartArea = cli.getChartAreaBoundingBox();
-        //$('circle').each(function () {
-        //    var $c = $(this);
-
-        //    //image.setAttributeNS("http://www.w3.org/1999/xlink", "href", "https://" + "cdn3.iconfinder.com/data/icons/location-map/512/pin_marker_star-512.png");
-        //    //circles.setAttribute("style", "background-image: url(" + "https://" + "cdn3.iconfinder.com/data/icons/location-map/512/pin_marker_star-512.png)");
-        //    //img.css({
-        //    //top: Math.floor(cli.getYLocation(dataTable.getValue(i, 1))) - 10 + "px",
-        //    //left: Math.floor(cli.getXLocation(5)) - 10 + "px"
-        //    //});
-        //    var svgimg = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-        //    svgimg.setAttributeNS(null, 'height', '16');
-        //    svgimg.setAttributeNS(null, 'width', '16');
-        //    svgimg.setAttributeNS('http://' + 'www.w3.org/1999/xlink', 'href', 'https://' + 'cdn3.iconfinder.com/data/icons/location-map/512/pin_marker_star-512.png');
-        //    svgimg.setAttributeNS(null, 'x', Math.floor(cli.getYLocation(dataTable.getValue(i, 1))) - 10);
-        //    svgimg.setAttributeNS(null, 'y', Math.floor(cli.getXLocation(i)) - 10);
-        //    this.parentElement.appendChild(svgimg);
-
-
-        //this.setAttribute("fill", "black");
-
-        //var circles = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        //circles.setAttribute("style", "background-image: url(" + link + ");");
-
-        //this.setAttribute("style", "background-image: url(" + link + ");");
-        //i++;
-        //console.log(circles.getAttribute("style"));
-        //console.log(link);
-    //});
-
-    //});
-
-    //chart.setAction({
-
-    //    id: 'point',
-    //    text: 
-    //    action: function () {
-    //        getValue();
-    //    }
-    //});
-
     chart.draw(data, options);
 }

@@ -417,14 +417,14 @@ fieldset[disabled] .btn-primary.active {
   text-shadow: none;
   background: #222222;
 }
-img::selection {
+/*img::selection {
   color: white;
   background: transparent;
 }
 img::-moz-selection {
   color: white;
   background: transparent;
-}
+}*/
 body {
   webkit-tap-highlight-color: #222222;
 }
