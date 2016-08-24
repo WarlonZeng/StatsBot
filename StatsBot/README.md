@@ -82,7 +82,10 @@ Primary chart nearly completion. Will try to improve processing speed after gett
 ## 8/23/16
 HTML5 > SVG. The future is HTML5. Planning features for quick search with caches/cookies. Probably database first though.
 
-TL;DR: May change Express.js + Node.js into ASP.NET 5.
+## 8/24/16
+Used cookies to process cross-region search. Planning to use cookies to shorten ajax calls, currently the ajax calls are as follows:
+Get StaticData (get static champion data) -> Get APIKeyReadyStatus: (if in limit, wait user) -> Search summoner: (get id) -> Get Champion Data (get ranked data). 
+I plan to do async callbacks after getting basic functionality down.
 
 ## Planned features
 ### High-priority:
@@ -141,3 +144,7 @@ TL;DR: May change Express.js + Node.js into ASP.NET 5.
 
 ### v2.1.1
 * Data points are now circles!
+
+### v2.2.0:
+* Frontpage and main page updated!
+ * Logo is out!

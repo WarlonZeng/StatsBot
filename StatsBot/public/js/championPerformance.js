@@ -6,9 +6,8 @@ var version;
 getStaticData();
 
 function getStaticData() {
-    //var object;
     $.ajax({
-        async: true, //type:get
+        async: false, //type:get
         url: '/public/getStaticChampionsGameVersion.js', // use python or php, maybe link to js to create file. javascript cannot write file to server from client side, even with ajax call. ajax call can only read.
         //dataType = "JSON",
         success: function (data) {
@@ -17,7 +16,6 @@ function getStaticData() {
             version = championsGameVersion.version;
         }
     });
-    //return object;
 }
 
 function getAPIStatusAndKey() { // this needs to be done before data processing
@@ -91,16 +89,12 @@ function gup(name, url) {
 }
 
 function requestSummonerData() { // "main" function
-    var region = "na";
     var APIKeyObject = getAPIStatusAndKey();
     var thisURL = window.location.href;
+    var region = (gup('region', thisURL)).toLowerCase();    
+    var summonerName = ((gup("summoner", thisURL)).toLowerCase()).replace(/[^0-9a-zA-Z]/g, '');
 
     if (APIKeyObject.APIKeyReadyStatus) {
-        //var summonerName = (((document.getElementById('summonerName')).value).toLowerCase().replace(/ /g, ''));
-        //var summonerName = (document.getElementById('summonerName').value).toLowerCase();
-
-        summonerName = ((gup("summoner", thisURL)).toLowerCase()).replace(/\+/g, ' ');
-        console.log(summonerName);
         var summonerID = getSummonerID(region, summonerName, APIKeyObject.APIKey);
         return generateChampionData(region, summonerID, APIKeyObject.APIKey);
     }
@@ -108,8 +102,6 @@ function requestSummonerData() { // "main" function
         alert('API key not ready, try again in ' + APIKeyObject.WaitTime + 's');
     }
 }
-
-
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -168,7 +160,6 @@ function drawChart() {
         var i = 0;
         var cli = this.getChartLayoutInterface();
         var chartArea = cli.getChartAreaBoundingBox();
-
         for (var i = 0; i < championArray.length; i++) {
             var link = "http://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/" + championArray[i][2] + ".png";
             var img = document.createElement('img');

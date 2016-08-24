@@ -182,6 +182,7 @@
     <Compile Include="bower_components\scrollreveal\lib\gulp\gulp-validate-bower.js" />
     <Compile Include="bower_components\scrollreveal\lib\gulp\gulp-watch.js" />
     <Compile Include="bower_components\scrollreveal\src\scrollreveal.js" />
+    <Compile Include="public\get_set_Cookies.js" />
     <Compile Include="public\js\getAPIKeyLastUsed.js" />
     <Compile Include="public\js\championPerformance.js" />
     <Compile Include="public\js\creative.js" />
@@ -392,6 +393,8 @@
     <Content Include="public\less\creative.less" />
     <Content Include="public\less\mixins.less" />
     <Content Include="public\less\variables.less" />
+    <Content Include="public\index.css" />
+    <Content Include="public\StatsBot.png" />
     <Content Include="public\tabs\index.html" />
     <Content Include="README.md" />
   </ItemGroup>

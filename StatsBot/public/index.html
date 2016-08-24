@@ -25,51 +25,94 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 
+    <!-- Custom CSS -->
+    <link href="index.css" rel="stylesheet" />
+
     <!-- jQuery -->
     <script src="../bower_components/jQuery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- Custom JavaScript-->
+
+    <script src="get_set_Cookies.js"></script>
+
     <script>
-        $(document).ready(function (event) {
-            $("#summonerName").keyup(function (event) {
+        $(document).ready(function () {
+            $('.region-panel .dropdown-menu').find('a').click(function (e) {
+                e.preventDefault();
+                //var regionAbbrev = $(this).attr("href").replace("#", "");
+                var regionAbbrev = $(this).attr('id');
+                //var regionFull = $(this).text();
+                $('.region-panel #select_region').text(regionAbbrev);
+                $('#region').val(regionAbbrev);
+            });
+            $("").keyup(function (event) {
                 if (event.which == 13) {
                     this.form.submit();
                 }
-            })
+            });
         });
     </script>
+
+    <!--<script>
+        function setCookieRegion(c_name, c_value) {
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 10 * 365);
+            var c_value = escape(c_value) + ((expireDate == null) ? "" : ";expires=" + expireDate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+    </script>
+
+    <script>
+        function getCookieValue(cookie) {
+            var b = document.cookie.match('(^|;)\\s*' + cookie + '\\s*=\\s*([^;]+)');
+            return b ? b.pop() : '';
+        }
+    </script>-->
+
 </head>
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <!-- action = perform javascript function; THE INPUT IS APPENDED TO THE URL. PARSE IT. -->
-                <form name="search"
-                      style="color: black; font-size: 150%; text-align: center"
-                      action="tabs/index.html"
-                      method="get">
-                    <br>
-                    <div class="input-group custom-search-form">
-                        <input type="text"
-                               class="form-control"
-                               name="summoner"
-                               placeholder="Search Summoner's Name..."
-                               autofocus>
-                        <span class="input-group-btn">
-                            <button class="btn btn-default"
-                                    type="button"
-                                    onclick="form.submit()">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                    <br>
-                </form>
+        <img src="StatsBot.png" id="logo" />
+        <form name="search" id="search_region_summoner" action="tabs/index.html" method="get">
+            <input type="hidden" name="region" id="region" value="all">
+
+            <div class="input-group">
+                <input type="text" class="form-control" name="summoner" placeholder="Search Summoner's Name..." autofocus>
+
+                <div class="input-group-btn region-panel">
+                    <button type="button" class="btn btn-default dropdown-toggle search-btn-right" data-toggle="dropdown">
+                        <span id="select_region">Region</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#NA" id="NA" onclick="setCookieRegion('StatsBot_Region', this.id)" name="NA">North America</a></li>
+                        <li><a href="#KR" id="KR" onclick="setCookieRegion('StatsBot_Region', this.id)" name="KR">Korea</a></li>
+                        <li><a href="#JP" id="JP" onclick="setCookieRegion('StatsBot_Region', this.id)" name="JP">Japan</a></li>
+                        <li><a href="#EUW" id="EUW" onclick="setCookieRegion('StatsBot_Region', this.id)" name="EUW">Europe West</a></li>
+                        <li><a href="#EUNE" id="EUNE" onclick="setCookieRegion('StatsBot_Region', this.id)" name="EUNE">Europe Northeast</a></li>
+                        <li><a href="#OCE" id="OCE" onclick="setCookieRegion('StatsBot_Region', this.id)" name="OCE">Oceania</a></li>
+                        <li><a href="#BR" id="BR" onclick="setCookieRegion('StatsBot_Region', this.id)" name="BR">Brazil</a></li>
+                        <li><a href="#LAS" id="LAS" onclick="setCookieRegion('StatsBot_Region', this.id)" name="LAS">Latin America South</a></li>
+                        <li><a href="#LAN" id="LAN" onclick="setCookieRegion('StatsBot_Region', this.id)" name="LAN">Latin America North</a></li>
+                        <li><a href="#RU" id="RU" onclick="setCookieRegion('StatsBot_Region', this.id)" name="RU">Russia</a></li>
+                        <li><a href="#TR" id="TR" onclick="setCookieRegion('StatsBot_Region', this.id)" name="TR">Turkey</a></li>
+                    </ul>
+                </div>
+
+                <span class="input-group-btn">
+                    <button class="btn btn-default"
+                            id="submit_button"
+                            type="button"
+                            onclick="form.submit()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>
