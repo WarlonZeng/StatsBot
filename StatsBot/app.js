@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var debug = require('debug')('StatsBot');
 var methodOverride = require('method-override');
 var http = require('http');
+//var jQuery = require('jquery');
 
 var app = express();
 app.set('port', process.env.PORT || 1337);
@@ -23,8 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 app.use(methodOverride());
 
-require('./public/js/getAPIKeyLastUsed.js')(app); // make this a server file
-require('./public/js/getStaticChampionsGameVersion.js')(app);
+//require('./public/js/server/get_static_champions_version.js')(app); // run this on start up. contains get.
+require('./public/js/server/post_initialize_data.js')(app); // run this on start up. contains post.
 
 //app.use(function (req, res, next) {
 //    var err = new Error('Not Found');
@@ -33,30 +34,31 @@ require('./public/js/getStaticChampionsGameVersion.js')(app);
 //    next(err);
 //});
 
-if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
+//if (app.get('env') === 'development') {
+//    app.use(function (err, req, res, next) {
+//        console.log(err.status);
+//        console.log(err.stack);
+//        if (res.status(err.status || 500)) {
+//            console.log(err.stack);
+//            res.send('error', {
+//                message: err.message,
+//                error: err
+//            });
+//        }
+//    });
+//};
 
-        if (res.status(err.status || 500)) {
-            console.log(err.status);
-            res.send('error', {
-                message: err.message,
-                error: err
-            });
-        }
-    });
-};
+//app.use(function (err, req, res, next) {
 
-app.use(function (err, req, res, next) {
-
-    if (res.status(err.status || 500)) {
-        console.log(err.status);
-        res.send({
-            status: 500,
-            message: 'internal error',
-            type: 'internal'
-        });
-    }
-});
+//    if (res.status(err.status || 500)) {
+//        console.log(err.status);
+//        res.send({
+//            status: 500,
+//            message: 'internal error',
+//            type: 'internal'
+//        });
+//    }
+//});
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

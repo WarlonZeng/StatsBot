@@ -87,6 +87,14 @@ Used cookies to process cross-region search. Planning to use cookies to shorten 
 Get StaticData (get static champion data) -> Get APIKeyReadyStatus: (if in limit, wait user) -> Search summoner: (get id) -> Get Champion Data (get ranked data). 
 I plan to do async callbacks after getting basic functionality down.
 
+## 8/28/16
+Took me awhile to learn the entirety of asynchronous calls. All asynchronous calls are pushed out of the synchronous execution flow. The only
+practical way to get a synchronous to work with asynchronous is through a callback. Callbacks after callbacks. Holy hell. And the asynchronous calls
+can be performed in parallel too. Basically JavaScript being single-threaded and then multi-threaded after finishing single-threaded. The async function
+did not arrive in ES7 2016, I think right now it's at stage 3 or 4 for the proposal. So I used promise.then() and ajax.done().
+
+Feels like I can make a fully distributed system now with C++ multi-threading and js asynchronous events... race condition... concurrency... blah.
+
 ## Planned features
 ### High-priority:
 * TCP connection via socket.io npm module to livecheck if API key is ready to use (might be done with eventlistener instead).
@@ -148,3 +156,7 @@ I plan to do async callbacks after getting basic functionality down.
 ### v2.2.0:
 * Frontpage and main page updated!
  * Logo is out!
+
+### v2.3.0:
+* Improved computing speed:
+ * Backend: Website now performs asynchronous operations for asynchronous functions.

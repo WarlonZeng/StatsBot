@@ -36,7 +36,7 @@
 
     <!-- Custom JavaScript-->
 
-    <script src="get_set_Cookies.js"></script>
+    <script src="log_cookies.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -55,22 +55,6 @@
             });
         });
     </script>
-
-    <!--<script>
-        function setCookieRegion(c_name, c_value) {
-            var expireDate = new Date();
-            expireDate.setDate(expireDate.getDate() + 10 * 365);
-            var c_value = escape(c_value) + ((expireDate == null) ? "" : ";expires=" + expireDate.toUTCString());
-            document.cookie = c_name + "=" + c_value;
-        }
-    </script>
-
-    <script>
-        function getCookieValue(cookie) {
-            var b = document.cookie.match('(^|;)\\s*' + cookie + '\\s*=\\s*([^;]+)');
-            return b ? b.pop() : '';
-        }
-    </script>-->
 
 </head>
 

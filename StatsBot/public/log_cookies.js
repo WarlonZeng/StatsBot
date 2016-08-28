@@ -1,7 +1,13 @@
 ﻿$(document).ready(function () {
     // page load: load cookie text, input
-    $('#region').val(getCookieValue('StatsBot_Region'));
-    $('.region-panel #select_region').text(getCookieValue('StatsBot_Region'));
+    if (getCookieValue('StatsBot_Region') == '') {
+        $('#region').val('Region');
+        $('.region-panel #select_region').text('Region');
+    }
+    else {
+        $('#region').val(getCookieValue('StatsBot_Region'));
+        $('.region-panel #select_region').text(getCookieValue('StatsBot_Region'));
+    }
 });
 
 function getCookieValue(cookie) {
