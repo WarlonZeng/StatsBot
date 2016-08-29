@@ -14,6 +14,7 @@ var static_data_promise = new Promise(function (resolve, reject) {
         var title;
         var name;
         var key;
+
         if (!error && response.statusCode === 200) {
             Object.keys(body.data).forEach(function (i) {
                 id = body.data[i].id;

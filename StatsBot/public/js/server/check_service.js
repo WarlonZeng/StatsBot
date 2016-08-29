@@ -44,7 +44,8 @@ module.exports = { // var foo = require('./check_service'), foo.enterQueue() is 
         }
         else {
             service.enqueue(time_now_ms);
-            setTimeout(function () { service.dequeue() }, 5000);
+            console.log(service.line);
+            setTimeout(function () { service.dequeue(); console.log(service.line); }, 600000);
             status.status = true;
             log_client(time_now);
             return status;

@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, '/bower_components')));
 app.use(methodOverride());
 
-//require('./public/js/server/get_static_champions_version.js')(app); // run this on start up. contains get.
 require('./public/js/server/post_initialize_data.js')(app); // run this on start up. contains post.
 
 //app.use(function (req, res, next) {

@@ -95,20 +95,22 @@ did not arrive in ES7 2016, I think right now it's at stage 3 or 4 for the propo
 
 Feels like I can make a fully distributed system now with C++ multi-threading and js asynchronous events... race condition... concurrency... blah.
 
+## 8/29/16
+I think it is safe to say my website has finished local hosting development. I hope to ship it to AWS cloud services.
+Custom Queue class defined and used to handle API Key abuse. If using service for first time -> enqueue twice.
+If using service again -> enqueue once. Cool feature: Clients automatically "dequeue" from service after 600 seconds. 
+Cookies are used for local region, may implement for summoner name-id to reduce http calls. Server does some initialization at start up to improve computing speeds for clients. 
+
 ## Planned features
-### High-priority:
-* TCP connection via socket.io npm module to livecheck if API key is ready to use (might be done with eventlistener instead).
-* Logging IP Address, number of searches, etc.
-* Decorate the front-end via Angular.js, bootstrap (bootstrap employed!)
-* Multi-page dashboard w/ sidebar website overhaul (in alpha phase!)
-
-### Medium-priority:
-* Linking and managing a database system (MongoDB). 
-* Enabling cookies/caches/localstorage for returning users.
-
-### Low-priority:
-* May switch out jQuery.js for Vanillia.js or take it out completely.
-* May change system deployment to UNIX and use gulp to run Node.js.
+### Priorities:
+* TCP connection via socket.io npm module to livecheck if API key is ready to use (might be done with eventlistener instead). (implemented as http)
+* Logging IP Address, number of searches, etc. (logged last time my service was used)
+* Frontpage form validation.
+* More validation + error handling.
+* Linking and managing a database system (MongoDB). (db not implemented yet)
+* Enabling cookies/caches/localstorage for returning users. (cookies enabled, caches enabled)
+* May switch out jQuery.js for Vanillia.js or take it out completely. (8/29/16 jQuery seems good)
+* May change system deployment to UNIX and use gulp to run Node.js. (pm2)
 
 ## Changelog
 ### v1.0.0: 
@@ -160,3 +162,7 @@ Feels like I can make a fully distributed system now with C++ multi-threading an
 ### v2.3.0:
 * Improved computing speed:
  * Backend: Website now performs asynchronous operations for asynchronous functions.
+
+### v3.0.0: 
+* More graphs!
+ * Avg KDA, Avg Kills, Avg Deaths, and Avg Assists per game.
