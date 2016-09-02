@@ -74,11 +74,11 @@
             data: { region, summoner_name }
         })
             .done(function (res) {
-                google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data.ranked_data_champion_wins_picks, res.version));
-                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kda(res.ranked_data.ranked_data_champion_wins_avg_kda, res.version));
-                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kills(res.ranked_data.ranked_data_champion_wins_avg_kills, res.version));
-                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_deaths(res.ranked_data.ranked_data_champion_wins_avg_deaths, res.version));
-                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_assists(res.ranked_data.ranked_data_champion_wins_avg_assists, res.version));
+                google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data_processed.ranked_data_champion_wins_picks, res.version));
+                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kda(res.ranked_data_processed.ranked_data_champion_wins_avg_kda, res.version));
+                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kills(res.ranked_data_processed.ranked_data_champion_wins_avg_kills, res.version));
+                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_deaths(res.ranked_data_processed.ranked_data_champion_wins_avg_deaths, res.version));
+                google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_assists(res.ranked_data_processed.ranked_data_champion_wins_avg_assists, res.version));
             });
     </script>
 
@@ -115,11 +115,11 @@
                     data: { region: region, summoner_name: summoner_name },
                 })
                     .done(function (res) {
-                        google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data.ranked_data_champion_wins_picks, res.version));
-                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kda(res.ranked_data.ranked_data_champion_wins_avg_kda, res.version));
-                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kills(res.ranked_data.ranked_data_champion_wins_avg_kills, res.version));
-                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_deaths(res.ranked_data.ranked_data_champion_wins_avg_deaths, res.version));
-                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_assists(res.ranked_data.ranked_data_champion_wins_avg_assists, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data_processed.ranked_data_champion_wins_picks, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kda(res.ranked_data_processed.ranked_data_champion_wins_avg_kda, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kills(res.ranked_data_processed.ranked_data_champion_wins_avg_kills, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_deaths(res.ranked_data_processed.ranked_data_champion_wins_avg_deaths, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_assists(res.ranked_data_processed.ranked_data_champion_wins_avg_assists, res.version));
                     });
             });
         });

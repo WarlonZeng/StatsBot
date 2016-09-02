@@ -9,20 +9,18 @@ var service = require('./check_service.js'); // retrieve custom+ queue.
 
 var api_key = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7'; // critical sensitive data - api key
 var static_data = {}; // container variable for static data 
-var db; // container variable for database
+var collection; // container variable for database collection
+var summoner_id_query_value = { '$exists': true }; // it is a fixed value that is part of every query object. 
 
 static_data_promise.then(function (res) { // unload the static data promise
     static_data = res;
 });
 
 db_promise.then(function (res) { // unload the database promise. connection to DB is TCP just like socketing. very expensive call, makes new thread on mongodb every time. that is why we reuse connection via server initialization.
-    db = res;
-    db.collection('gfdgdg').find().toArray(function (err, res) {
-        if (err)
-            console.log(err);
-        else
-            console.log(res);
-    });
+    collection = res.collection('summoners'); // select summoners collection inside statsbot database
+    collection.find().toArray(function (err, docs) {
+        console.log(docs);
+    }); // see what we have in store at server initialization.
 });
 
 function process_ranked_data(data) { // custom processing!
@@ -104,48 +102,63 @@ function process_ranked_data(data) { // custom processing!
 
 module.exports = function (app) { // embrace async callback hell
     app.post('/public/js/server/post_initialize_data.js', function (req, res) {
-        var region = req.body.region;
-        var summoner_name = req.body.summoner_name;
+        var region = req.body.region; // summoner's region
+        var summoner_name = req.body.summoner_name; // summoner's name
         var summoner_id = 0;
+        var summoner_id_query = {}; // container for queries (is used and recycled)
+        summoner_id_query[summoner_name] = summoner_id_query_value; // { 'yinhei' : { $exists : true } }
 
-        if (service.enqueue().status) { // enqueue for 1st api call: get id
-            var summoner_id_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + summoner_name + '?api_key=' + api_key; // defined with Client input region, name
+        collection.findOne(summoner_id_query, function (err, doc) {
+            if (err) throw err;
+            else if (doc == null) {
+                if (service.enqueue().status) { // enqueue for 1st api call: get id
+                    var summoner_id_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + summoner_name + '?api_key=' + api_key; // defined with Client input region, name
 
-            request({ url: summoner_id_url, json: true }, function (error, response, body) { // 1st async func
-                if (!error && response.statusCode === 200) { // may return bad request if specified name doesn't exist (typo: Client's fault).
-                    summoner_id = body[summoner_name].id;
+                    request({ url: summoner_id_url, json: true }, function (error, response, body) { // 1st async func
+                        if (error) throw (error);
+                        else if (!error && response.statusCode === 200) { // may return bad request if specified name doesn't exist (typo: Client's fault).
+                            summoner_id = body[summoner_name].id;
 
-                    db.collection('summoners').createIndex({ summoner_name: summoner_id }, { unique: true });
-                    db.collection('summoners').find({}).toArray(function (err, res) {
-                        if (err)
-                            console.log(err);
-                        else
-                            console.log(res);
+                            summoner_id_query[summoner_name] = summoner_id;
+                            collection.update(summoner_id_query, summoner_id_query, { upsert: true }); // insert into database if not found
+
+                            if (service.enqueue().status) { // enqueue for 2nd api call: get ranked data
+                                var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
+                                console.log(service.line);
+
+                                request({ url: ranked_data_url, json: true }, function (error, response, body) { // 2nd async func, rqeuires information from 1st async to send
+                                    if (error) throw (error);
+                                    else if (!error && response.statusCode === 200) {
+                                        var ranked_data = process_ranked_data(body);
+                                        res.send({ ranked_data_processed: ranked_data, version: static_data.version });
+                                    }
+                                });
+                            }
+                            else
+                                alert('API key not ready, try again in ' + service.enqueue().wait + 's');
+                        }
                     });
-
-                    //db.collection('summoners').find().toArray(function (err, res) {
-                    //    if (err)
-                    //        console.log(err);
-                    //    else
-                    //        console.log(res);
-                    //});
-
-                    //console.log(db.collection('test').find());
-
-                    if (service.enqueue().status) { // enqueue for 2nd api call: get ranked data
-                        var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
-
-                        request({ url: ranked_data_url, json: true }, function (error, response, body) { // 2nd async func, rqeuires information from 1st async to send
-                            var ranked_data = process_ranked_data(body);
-                            res.send({ ranked_data: ranked_data, version: static_data.version });
-                        });
-                    }
-                    else
-                        alert('API key not ready, try again in ' + service.enqueue().wait + 's');
                 }
-            });
-        }
-        else
-            alert('API key not ready, try again in ' + service.enqueue().wait + 's');
+                else
+                    alert('API key not ready, try again in ' + service.enqueue().wait + 's');
+            }
+            else {
+                summoner_id = doc[summoner_name];
+                if (service.enqueue().status) { // enqueue for 1st api call: get ranked data
+                    var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
+                    console.log(service.line);
+
+                    request({ url: ranked_data_url, json: true }, function (error, response, body) { // 1st async func
+                        if (error) throw (error);
+                        else if (!error && response.statusCode === 200) {
+                            var ranked_data = process_ranked_data(body);
+                            res.send({ ranked_data_processed: ranked_data, version: static_data.version });
+                        }
+                    });
+                }
+                else
+                    alert('API key not ready, try again in ' + service.enqueue().wait + 's');
+            }
+        });
     });
 }

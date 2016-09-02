@@ -1,8 +1,8 @@
 ﻿# StatsBot
-StatsBot Website (formerly BaddieDetector)
+StatsBot Website
 
 ## Overview
-StatsBot is a website aimed at crawling Riot's API and returning particular statistics aimed at determining if the user is "bad" or not.
+StatsBot is a website aimed at crawling Riot's API and returning particular statistics aimed at determining the skills of the searched current-season ranked player.
 
 This website is entirely objectively subjective and built to train my development skills (non-profit).
 
@@ -11,19 +11,20 @@ Website is entirely one-page.
 ## Technologies involved
 * MEAN Stack
 
-> Currently, MongoDB and Angular.js are not employed yet.
+> Currently, Angular.js is not employed yet, but may not ever need (jQuery is an alternative).
 
 ## Techniques involved
 * Ajax calls
 * JSON parsing
 * File systems
+* Databases queries
 
 ## Usuage
-User will search a summoner's name and various statistics from Riot's API will be returned. 
+User will search a summoner's name and various statistics from Riot's API will be returned.
 
 ## How to run
 1. Set app.js as Node.js start-up file.
-2. Microsoft Visual Studio 2015 build and debug node project.
+2. pm2 run app.js.
 
 ## Developer-dependency
 Microsoft Visual Studio 2015 Community was used to run & debug this project.
@@ -31,31 +32,23 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 ## npm-dependencies
 ###Latest Versions
 1. body-parser
-2. cookie-parser
 3. debug
-4. express
-5. jade
-6. method-override
-7. mongodb
-8. morgan
-9. serve-favicon
-10. serve-static
-11. stylus
+3. express
+4. method-override
+5. mongodb
+6. request
+7. serve-favicon
+8. serve-static
+9. stylus
+10. pm2
 
 ## Bower/browser-dependencies
 ### Latest Versions
-1. jQuery
-2. Bootstrap
-3. bootstrap-social
-4. datatables
-5. datatables-plugins
-6. datatables-responsive
-7. flot
-8. flot-tooltip
-9. font-awesome
-10. metismenu
-11. morrisjs
-12. raphael
+1. bootstrap
+2. font-awesome
+3. jquery
+4. magnific-popup
+5. scrollreveal
 
 ## Mini-Dev Blog
 ### 8/10/16
@@ -100,6 +93,10 @@ I think it is safe to say my website has finished local hosting development. I h
 Custom Queue class defined and used to handle API Key abuse. If using service for first time -> enqueue twice.
 If using service again -> enqueue once. Cool feature: Clients automatically "dequeue" from service after 600 seconds. 
 Cookies are used for local region, may implement for summoner name-id to reduce http calls. Server does some initialization at start up to improve computing speeds for clients. 
+
+## 9/2/16
+Implemented MongoDB. MongoDB is a NoSQL database, which I believe to be efficient for document-style warehousing. Server is linked to database from get-go, connection is dropped
+upon server termination. Currently deploying now to AWS. Planning to write an informal software engineering doc soon.
 
 ## Planned features
 ### Priorities:
@@ -170,3 +167,9 @@ Cookies are used for local region, may implement for summoner name-id to reduce 
 ### v3.1.0:
 * Added MongoDB:
  * Logs name and id as key-value pair.
+
+### v3.2.0:
+* Effectively 1.5x website scale with database implementation
+ * New searches = 2 api call
+ * Old searches = 1 api call
+  * The fewer the API call, the more I can serve!

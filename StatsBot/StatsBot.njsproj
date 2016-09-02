@@ -20,8 +20,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <ProjectView>ProjectFiles</ProjectView>
-    <NodejsPort>1337</NodejsPort>
-    <StartWebBrowser>true</StartWebBrowser>
+    <NodejsPort>54321</NodejsPort>
+    <StartWebBrowser>True</StartWebBrowser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -391,11 +391,6 @@
     <Content Include="public\assets\imgs\676412.png" />
     <Content Include="public\css\theme\StatsBot.css" />
     <Content Include="public\favicon.ico" />
-    <Content Include="public\img\portfolio\fullsize\2.jpg" />
-    <Content Include="public\img\portfolio\fullsize\3.jpg" />
-    <Content Include="public\img\portfolio\fullsize\4.jpg" />
-    <Content Include="public\img\portfolio\fullsize\5.jpg" />
-    <Content Include="public\img\portfolio\fullsize\6.jpg" />
     <Content Include="public\img\portfolio\thumbnails\1.jpg" />
     <Content Include="public\img\portfolio\thumbnails\2.jpg" />
     <Content Include="public\img\portfolio\thumbnails\3.jpg" />
@@ -403,8 +398,6 @@
     <Content Include="public\img\portfolio\thumbnails\5.jpg" />
     <Content Include="public\img\portfolio\thumbnails\6.jpg" />
     <Content Include="public\index.html" />
-    <Content Include="public\less\mixins.less" />
-    <Content Include="public\less\variables.less" />
     <Content Include="public\index.css" />
     <Content Include="public\StatsBot.png" />
     <Content Include="public\tabs\index.html" />
@@ -468,16 +461,12 @@
     <Folder Include="public\assets\imgs\" />
     <Folder Include="public\css\" />
     <Folder Include="public\css\theme\" />
-    <Folder Include="public\img\" />
-    <Folder Include="public\img\portfolio\" />
-    <Folder Include="public\img\portfolio\fullsize\" />
     <Folder Include="public\img\portfolio\thumbnails\" />
     <Folder Include="public\js\" />
     <Folder Include="public\js\client\" />
     <Folder Include="public\js\data_structures\" />
     <Folder Include="public\js\theme\" />
     <Folder Include="public\js\server\" />
-    <Folder Include="public\less\" />
     <Folder Include="public\tabs\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />

@@ -1,5 +1,5 @@
 ﻿var mongo_client = require('mongodb'); // javascript mongodb module (library).
-var db_url = 'mongodb://localhost:27017/data';
+var db_url = 'mongodb://localhost:27017/statsbot';
 
 var db_promise = new Promise(function (resolve, reject) {
     mongo_client.connect(db_url, function (err, res) { // async operation open connection.
