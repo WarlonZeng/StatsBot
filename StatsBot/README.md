@@ -166,3 +166,7 @@ Cookies are used for local region, may implement for summoner name-id to reduce 
 ### v3.0.0: 
 * More graphs!
  * Avg KDA, Avg Kills, Avg Deaths, and Avg Assists per game.
+
+### v3.1.0:
+* Added MongoDB:
+ * Logs name and id as key-value pair.

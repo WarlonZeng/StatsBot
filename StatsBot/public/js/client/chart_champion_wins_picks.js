@@ -9,7 +9,7 @@
     var options = {
         title: 'Win Rate vs. Pick Rate Comparison',
         hAxis: {
-            gridlines: { color: '#000000' },
+            gridlines: { color: '#000000', count: 11 },
             format: '#\'%\'',
             colors: ['#000000'],
             title: 'Pick Rate',
@@ -24,7 +24,7 @@
             minValue: 0,
         },
         vAxis: {
-            gridlines: { color: '#000000' },
+            gridlines: { color: '#000000', count: 11 },
             format: '#\'%\'',
             title: 'Win Rate',
             titleTextStyle: {

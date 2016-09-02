@@ -9,7 +9,7 @@
     var options = {
         title: 'Win Rate vs. Average KDA per Game',
         hAxis: {
-            gridlines: { color: '#000000' },
+            gridlines: { color: '#000000', count: 11 },
             //format: '#\'%\'',
             colors: ['#000000'],
             title: 'Average KDA per Game',
@@ -24,7 +24,7 @@
             minValue: 0,
         },
         vAxis: {
-            gridlines: { color: '#000000' },
+            gridlines: { color: '#000000', count: 11 },
             format: '#\'%\'',
             title: 'Win Rate',
             titleTextStyle: {

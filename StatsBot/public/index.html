@@ -41,17 +41,13 @@
     <script>
         $(document).ready(function () {
             $('.region-panel .dropdown-menu').find('a').click(function (e) {
-                e.preventDefault();
-                //var regionAbbrev = $(this).attr("href").replace("#", "");
-                var regionAbbrev = $(this).attr('id');
-                //var regionFull = $(this).text();
-                $('.region-panel #select_region').text(regionAbbrev);
-                $('#region').val(regionAbbrev);
+                e.preventDefault(); // each li-a is an href, prevent default for user interface.
+                var regionAbbrev = $(this).attr('id'); // get id of clicked region li-a.
+                $('.region-panel #select_region').text(regionAbbrev); // clicked region shows clicked text (what they clicked).
+                $('#region').val(regionAbbrev); // input value is defined.
             });
-            $("").keyup(function (event) {
-                if (event.which == 13) {
-                    this.form.submit();
-                }
+            $('#submit_button').click(function (event) { // click directs to submit handler to submit (submitting directly bypasses required validation...)
+                $('#submit_handler').click();
             });
         });
     </script>
@@ -61,11 +57,14 @@
 <body>
     <div class="container">
         <img src="StatsBot.png" id="logo" />
-        <form name="search" id="search_region_summoner" action="tabs/index.html" method="get">
-            <input type="hidden" name="region" id="region" value="all">
+
+        <!-- Input: Region. Input: Name. Both require validation before proceeding.-->
+        
+        <form name="search" id="search_region_summoner" action="tabs/index.html" method="get" >
+            <input type="hidden" name="region" id="region" value="all" required>
 
             <div class="input-group">
-                <input type="text" class="form-control" name="summoner" placeholder="Search Summoner's Name..." autofocus>
+                <input type="text" class="form-control" name="summoner" placeholder="Search Summoner's Name..." autofocus required>
 
                 <div class="input-group-btn region-panel">
                     <button type="button" class="btn btn-default dropdown-toggle search-btn-right" data-toggle="dropdown">
@@ -90,12 +89,12 @@
                 <span class="input-group-btn">
                     <button class="btn btn-default"
                             id="submit_button"
-                            type="button"
-                            onclick="form.submit()">
+                            type="button">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
             </div>
+            <input type="submit" id="submit_handler" style="display: none">
         </form>
     </div>
 </body>

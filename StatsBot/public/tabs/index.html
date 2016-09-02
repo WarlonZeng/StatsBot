@@ -46,6 +46,7 @@
     <script src="../js/client/chart_champion_wins_avg_deaths.js"></script>
     <script src="../js/client/chart_champion_wins_avg_assists.js"></script>
 
+    <!-- Simple function scripts -->
     <script>
         function gup(name, url) {
             if (!url) url = location.href;
@@ -56,18 +57,21 @@
             return results == null ? null : results[1];
         }
     </script>
-
+    
+    <!-- On load scripts -->
     <script>
-        this_url = window.location.href;
-        var region = (gup('region', this_url)).toLowerCase();
+        // obtaining required info
+        var this_url = window.location.href; // data is in the URL
+        region = (gup('region', this_url)).toLowerCase(); // region is global. it is recycled computed variable.
+        main_url = '/public/js/server/post_initialize_data.js';
         var summoner_name = ((gup("summoner", this_url)).toLowerCase()).replace(/[^0-9a-zA-Z]/g, '');
 
+        // starting asyncs
         google.charts.load('current', { 'packages': ['corechart'] });
-
         $.ajax({
             method: 'post',
-            url: '/public/js/server/post_initialize_data.js',
-            data: { summoner_name, region },
+            url: main_url,
+            data: { region, summoner_name }
         })
             .done(function (res) {
                 google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data.ranked_data_champion_wins_picks, res.version));
@@ -78,6 +82,48 @@
             });
     </script>
 
+    <!-- After load scripts -->
+    <script>
+        $(document).ready(function () {
+            // setting up the region
+            $('.region-panel #select_region').text(region.toUpperCase()); // recycled here.
+            $('#region').val(region); // assuming Client doesn't change region.
+
+            // setting up the region clickability
+            $('.region-panel .dropdown-menu').find('a').click(function (e) {
+                e.preventDefault(); // each li-a is an href, prevent default for user interface.
+                var regionAbbrev = $(this).attr('id'); // get id of clicked region li-a.
+                $('.region-panel #select_region').text(regionAbbrev); // clicked region shows clicked text (what they clicked).
+                $('#region').val(regionAbbrev); // input value is defined.
+            });
+            
+            // setting button icon event
+            $('#submit_button').click(function (event) { // click directs to submit handler to submit (submitting directly bypasses required validation...)
+                $('#submit_handler').click();
+            });
+
+            // setting form submit event
+            $('#search_region_summoner').submit(function (event) { // captures only enter
+                event.preventDefault(); // stop form from submitting normally
+                
+                var region = $('#region').val().toLowerCase();
+                var summoner_name = $('#summoner_name').val().toLowerCase().replace(/[^0-9a-zA-Z]/g, '');
+
+                $.ajax({
+                    method: 'post',
+                    url: main_url,
+                    data: { region: region, summoner_name: summoner_name },
+                })
+                    .done(function (res) {
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_picks(res.ranked_data.ranked_data_champion_wins_picks, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kda(res.ranked_data.ranked_data_champion_wins_avg_kda, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_kills(res.ranked_data.ranked_data_champion_wins_avg_kills, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_deaths(res.ranked_data.ranked_data_champion_wins_avg_deaths, res.version));
+                        google.charts.setOnLoadCallback(draw_chart_champion_wins_avg_assists(res.ranked_data.ranked_data_champion_wins_avg_assists, res.version));
+                    });
+            });
+        });
+    </script>
 </head>
 
 <body id="page-top">
@@ -112,38 +158,69 @@
         <!-- /.container-fluid -->
     </nav>
 
+    <form name="search" id="search_region_summoner" action="/public/js/server/post_initialize_data.js" method="post">
+        <input type="hidden" name="region" id="region" value="all" required>
+        <div class="input-group">
+            <input type="text" id="summoner_name" class="form-control" name="summoner_name" placeholder="Search Summoner's Name..." required>
+
+            <div class="input-group-btn region-panel">
+                <button type="button" class="btn btn-default dropdown-toggle search-btn-right" data-toggle="dropdown">
+                    <span id="select_region">Region</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#NA" id="NA" name="NA">North America</a></li>
+                    <li><a href="#KR" id="KR" name="KR">Korea</a></li>
+                    <li><a href="#JP" id="JP" name="JP">Japan</a></li>
+                    <li><a href="#EUW" id="EUW" name="EUW">Europe West</a></li>
+                    <li><a href="#EUNE" id="EUNE" name="EUNE">Europe Northeast</a></li>
+                    <li><a href="#OCE" id="OCE" name="OCE">Oceania</a></li>
+                    <li><a href="#BR" id="BR" name="BR">Brazil</a></li>
+                    <li><a href="#LAS" id="LAS" name="LAS">Latin America South</a></li>
+                    <li><a href="#LAN" id="LAN" name="LAN">Latin America North</a></li>
+                    <li><a href="#RU" id="RU" name="RU">Russia</a></li>
+                    <li><a href="#TR" id="TR" name="TR">Turkey</a></li>
+                </ul>
+            </div>
+
+            <span class="input-group-btn">
+                <button class="btn btn-default"
+                        id="submit_button"
+                        type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        <input type="submit" id="submit_handler" style="display: none">
+    </form>
+
     <!-- section: champion picks -->
     <section id="champion_wins_picks">
-        <div id="chart_champion_wins_picks" style="width: auto; height: auto">
-        </div>
+        <div id="chart_champion_wins_picks" style="width: auto; height: auto"></div>
     </section>
 
 
     <!-- section: champion kda -->
     <section id="champion_wins_avg_kda">
-        <div id="chart_champion_wins_avg_kda" style="width: auto; height: auto">
-        </div>
+        <div id="chart_champion_wins_avg_kda" style="width: auto; height: auto"></div>
     </section>
 
 
     <!-- section: champion kills -->
     <section id="champion_wins_avg_kills">
-        <div id="chart_champion_wins_avg_kills" style="width: auto; height: auto">
-        </div>
+        <div id="chart_champion_wins_avg_kills" style="width: auto; height: auto"></div>
     </section>
 
 
     <!-- section: champion deaths -->
     <section id="champion_wins_avg_deaths">
-        <div id="chart_champion_wins_avg_deaths" style="width: auto; height: auto">
-        </div>
+        <div id="chart_champion_wins_avg_deaths" style="width: auto; height: auto"></div>
     </section>
 
 
     <!-- section: champion assists -->
     <section id="champion_wins_avg_assists">
-        <div id="chart_champion_wins_avg_assists" style="width: auto; height: auto">
-        </div>
+        <div id="chart_champion_wins_avg_assists" style="width: auto; height: auto"></div>
     </section>
 
     <!-- Plugin JavaScript -->

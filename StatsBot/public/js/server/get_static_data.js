@@ -31,8 +31,8 @@ var static_data_promise = new Promise(function (resolve, reject) {
             Object.keys(body.version).forEach(function () {
                 static_data.version = body.version;
             });    
-        }
         resolve(static_data);
+        }
     });
 
 });

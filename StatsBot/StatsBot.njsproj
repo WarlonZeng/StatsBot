@@ -188,6 +188,7 @@
     <Compile Include="public\js\client\chart_champion_wins_avg_kda.js" />
     <Compile Include="public\js\data_structures\Queue.js" />
     <Compile Include="public\js\server\get_static_data.js" />
+    <Compile Include="public\js\server\initialize_database.js" />
     <Compile Include="public\log_cookies.js" />
     <Compile Include="public\js\server\post_initialize_data.js" />
     <Compile Include="public\js\server\check_service.js" />
@@ -402,7 +403,6 @@
     <Content Include="public\img\portfolio\thumbnails\5.jpg" />
     <Content Include="public\img\portfolio\thumbnails\6.jpg" />
     <Content Include="public\index.html" />
-    <Content Include="public\less\creative.less" />
     <Content Include="public\less\mixins.less" />
     <Content Include="public\less\variables.less" />
     <Content Include="public\index.css" />
@@ -468,6 +468,9 @@
     <Folder Include="public\assets\imgs\" />
     <Folder Include="public\css\" />
     <Folder Include="public\css\theme\" />
+    <Folder Include="public\img\" />
+    <Folder Include="public\img\portfolio\" />
+    <Folder Include="public\img\portfolio\fullsize\" />
     <Folder Include="public\img\portfolio\thumbnails\" />
     <Folder Include="public\js\" />
     <Folder Include="public\js\client\" />
@@ -483,6 +486,7 @@
     <Folder Include="typings\globals\express\" />
     <Folder Include="typings\globals\jquery\" />
     <Folder Include="typings\globals\method-override\" />
+    <Folder Include="typings\globals\mongodb\" />
     <Folder Include="typings\globals\morgan\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\request\" />
@@ -496,6 +500,7 @@
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\method-override\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\mongodb\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\morgan\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\request\index.d.ts" />

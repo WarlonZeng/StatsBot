@@ -1,6 +1,6 @@
 {
   "name": "stats-bot",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "StatsBot",
   "main": "app.js",
   "author": {
@@ -11,6 +11,7 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "method-override": "^2.3.6",
+    "mongodb": "^2.2.9",
     "morgan": "^1.7.0",
     "request": "^2.74.0",
     "serve-favicon": "^2.3.0",
