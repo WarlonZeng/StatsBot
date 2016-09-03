@@ -1,0 +1,171 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+a {
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+    color: #ff00d3;
+}
+
+    a:hover,
+    a:focus {
+        color: #ff00d3;
+    }
+
+.navbar-default {
+    background-color: rgba(34, 34, 34, 0.05);
+    border-color: rgba(34, 34, 34, 0.05);
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+    .navbar-default .navbar-header .navbar-brand {
+        color: #ff00d3;
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+        .navbar-default .navbar-header .navbar-brand:hover,
+        .navbar-default .navbar-header .navbar-brand:focus {
+            color: #ff00d3;
+        }
+
+    .navbar-default .navbar-header .navbar-toggle {
+        font-weight: 700;
+        font-size: 12px;
+        color: #222222;
+        text-transform: uppercase;
+    }
+
+    .navbar-default .nav > li > a,
+    .navbar-default .nav > li > a:focus {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 13px;
+        color: #222222;
+    }
+
+        .navbar-default .nav > li > a:hover,
+        .navbar-default .nav > li > a:focus:hover {
+            color: #ff00d3;
+        }
+
+    .navbar-default .nav > li.active > a,
+    .navbar-default .nav > li.active > a:focus {
+        color: #ff00d3 !important;
+        background-color: transparent;
+    }
+
+        .navbar-default .nav > li.active > a:hover,
+        .navbar-default .nav > li.active > a:focus:hover {
+            background-color: transparent;
+        }
+
+
+@media (min-width: 768px) {
+    .navbar-default {
+        background-color: transparent;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+        .navbar-default .navbar-header .navbar-brand,
+        .navbar-default .navbar-header .navbar-brand:focus {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+            .navbar-default .navbar-header .navbar-brand:hover,
+            .navbar-default .navbar-header .navbar-brand:focus:hover {
+                color: #0044ff;
+            }
+
+        .navbar-default .nav > li > a,
+        .navbar-default .nav > li > a:focus {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+            .navbar-default .nav > li > a:hover,
+            .navbar-default .nav > li > a:focus:hover {
+                color: #b200ff;
+            }
+
+        .navbar-default.affix {
+            background-color: rgba(34, 34, 34, 0.05);
+            border-color: rgba(34, 34, 34, 0.05);
+        }
+
+            .navbar-default.affix .navbar-header .navbar-brand {
+                font-size: 14px;
+            }
+
+                .navbar-default.affix .navbar-header .navbar-brand:hover,
+                .navbar-default.affix .navbar-header .navbar-brand:focus {
+                    color: #ff00d3;
+                }
+
+            .navbar-default.affix .nav > li > a,
+            .navbar-default.affix .nav > li > a:focus {
+                color: #222222;
+            }
+
+                .navbar-default.affix .nav > li > a:hover,
+                .navbar-default.affix .nav > li > a:focus:hover {
+                    color: #ff00d3
+                }
+}
+
+#search_region_summoner {
+    width: 25%;
+    position: fixed;
+    top: 10%;
+    right: -5%;
+    transform: translate(-50%, -50%);
+}
+
+.input-group .region-panel .search-btn-right {
+    border-radius: 0px;
+    border-width: 1px 0px 1px;
+    background: rgba(255, 0, 100, 0.80);
+    color: white
+}
+
+.input-group .region-panel .dropdown-menu a:hover {
+    background: rgba(255, 0, 100, 0.80);
+}
+
+.input-group .region-panel .dropdown-menu {
+    text-align: center;
+}
+
+#submit_button {
+    background: rgba(0, 100, 255, 0.80);
+    color: white;
+}
+
+section {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    background-image: url(../../assets/imgs/571302.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+}
+
+#chart_champion_wins_picks, #chart_champion_wins_avg_kda, #chart_champion_wins_avg_kills, #chart_champion_wins_avg_deaths, #chart_champion_wins_avg_assists{
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.5);
+}

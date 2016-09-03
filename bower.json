@@ -1,0 +1,10 @@
+{
+  "name": "stats-bot",
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "jQuery": "3.1.0",
+    "font-awesome": "fontawesome#4.6.3",
+    "magnific-popup": "1.1.0",
+    "scrollreveal": "3.3.1"
+  }
+}
