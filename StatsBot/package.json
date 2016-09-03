@@ -1,0 +1,21 @@
+{
+  "name": "stats-bot",
+  "version": "3.2.0",
+  "description": "StatsBot",
+  "main": "app.js",
+  "author": {
+    "name": "Warlon Zeng"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "debug": "^2.2.0",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6",
+    "mongodb": "^2.2.9",
+    "morgan": "^1.7.0",
+    "request": "^2.74.0",
+    "serve-favicon": "^2.3.0",
+    "serve-static": "^1.11.1",
+    "stylus": "^0.54.5"
+  }
+}
