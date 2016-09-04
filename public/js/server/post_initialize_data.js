@@ -1,4 +1,4 @@
-﻿// ------------------------- SERVER FILE -------------------------
+// ------------------------- SERVER FILE -------------------------
 // Clients will not be able to see the key.
 
 var request = require('request'); // javascript request module (library).
@@ -18,7 +18,7 @@ static_data_promise.then(function (res) { // unload the static data promise
 
 db_promise.then(function (res) { // unload the database promise. connection to DB is TCP just like socketing. very expensive call, makes new thread on mongodb every time. that is why we reuse connection via server initialization.
     collection = res.collection('summoners'); // select summoners collection inside statsbot database
-    collection.find().toArray(function (err, docs) {
+    collection.find().toarray(function (err, docs) {
         console.log(docs);
     }); // see what we have in store at server initialization.
 });
@@ -124,7 +124,7 @@ module.exports = function (app) { // embrace async callback hell
 
                             if (service.enqueue().status) { // enqueue for 2nd api call: get ranked data
                                 var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
-                                console.log(service.line);
+                                //console.log(service.line);
 
                                 request({ url: ranked_data_url, json: true }, function (error, response, body) { // 2nd async func, rqeuires information from 1st async to send
                                     if (error) throw (error);
@@ -146,7 +146,7 @@ module.exports = function (app) { // embrace async callback hell
                 summoner_id = doc[summoner_name];
                 if (service.enqueue().status) { // enqueue for 1st api call: get ranked data
                     var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
-                    console.log(service.line);
+                    //console.log(service.line);
 
                     request({ url: ranked_data_url, json: true }, function (error, response, body) { // 1st async func
                         if (error) throw (error);

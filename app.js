@@ -10,7 +10,7 @@ var http = require('http');
 //var jQuery = require('jquery');
 
 var app = express();
-app.set('port', process.env.PORT || 1337);
+app.set('port', process.env.PORT || 54321);
 //app.set('views', path.join(__dirname, 'views'));
 
 // uncomment after placing your favicon in /public

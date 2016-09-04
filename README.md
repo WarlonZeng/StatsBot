@@ -98,6 +98,9 @@ Cookies are used for local region, may implement for summoner name-id to reduce 
 Implemented MongoDB. MongoDB is a NoSQL database, which I believe to be efficient for document-style warehousing. Server is linked to database from get-go, connection is dropped
 upon server termination. Currently deploying now to AWS. Planning to write an informal software engineering doc soon.
 
+## 9/3/16
+Got my website working on Linux Ubuntu 16.0.4 LTS VM. Aiming for AWS cloud deployment soon.
+
 ## Planned features
 ### Priorities:
 * TCP connection via socket.io npm module to livecheck if API key is ready to use (might be done with eventlistener instead). (implemented as http)
@@ -173,3 +176,7 @@ upon server termination. Currently deploying now to AWS. Planning to write an in
  * New searches = 2 api call
  * Old searches = 1 api call
   * The fewer the API call, the more I can serve!
+
+### v3.3.0:
+* Changed deployment to Linux
+ * Ubuntu compatible
