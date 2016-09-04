@@ -20,14 +20,16 @@ Website is entirely one-page.
 * Databases queries
 
 ## Usuage
-User will search a summoner's name and various statistics from Riot's API will be returned.
+User will search a summoner's name and various statistics from Riot's API will be returned. Summoner must be ranked and must be playing in the current season.
 
 ## How to run
 1. Set app.js as Node.js start-up file.
-2. pm2 run app.js.
+2. Set mongodb service to github db
+3. Start Nginx
+4. unix command: "PORT=54321 pm2 start app1.js" 2..2. 3..3, etc. (multi-server).
 
 ## Developer-dependency
-Microsoft Visual Studio 2015 Community was used to run & debug this project.
+Microsoft Visual Studio 2015 Community was used to run & debug this project. Linux is preferred for deployment, but Microsoft VS 2015 is by far the best IDE.
 
 ## npm-dependencies
 ###Latest Versions
@@ -40,7 +42,7 @@ Microsoft Visual Studio 2015 Community was used to run & debug this project.
 7. serve-favicon
 8. serve-static
 9. stylus
-10. pm2
+10. pm2 (global)
 
 ## Bower/browser-dependencies
 ### Latest Versions
@@ -99,7 +101,7 @@ Implemented MongoDB. MongoDB is a NoSQL database, which I believe to be efficien
 upon server termination. Currently deploying now to AWS. Planning to write an informal software engineering doc soon.
 
 ## 9/3/16
-Got my website working on Linux Ubuntu 16.0.4 LTS VM. Aiming for AWS cloud deployment soon.
+Got my website working on Linux Ubuntu 16.0.4 LTS VM. Aiming for AWS cloud deployment soon. Deployed Amazon Linux on the cloud with Nginx reverse proxy for running multiple instances of server. This means high scability is achieved by reducing server load on a single-node system to a multi-node system. Fault tolerance is improved greatly; if one server fails, another server is present and, by default, pm2 automatically restarts any crashed server. All settings are more of less finalized, I'm tired and school is starting.
 
 ## Planned features
 ### Priorities:
@@ -180,3 +182,9 @@ Got my website working on Linux Ubuntu 16.0.4 LTS VM. Aiming for AWS cloud deplo
 ### v3.3.0:
 * Changed deployment to Linux
  * Ubuntu compatible
+
+### v3.4.0:
+* Deployment to cloud finalized
+ * Uses Amazon Linux for deployment
+ * Uses Nginx for reverse proxy
+   * There are 4 server instances running behind Nginx on 4 separate ports.
