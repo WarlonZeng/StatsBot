@@ -18,7 +18,7 @@ static_data_promise.then(function (res) { // unload the static data promise
 
 db_promise.then(function (res) { // unload the database promise. connection to DB is TCP just like socketing. very expensive call, makes new thread on mongodb every time. that is why we reuse connection via server initialization.
     collection = res.collection('summoners'); // select summoners collection inside statsbot database
-    collection.find().toarray(function (err, docs) {
+    collection.find().toArray(function (err, docs) {
         console.log(docs);
     }); // see what we have in store at server initialization.
 });
