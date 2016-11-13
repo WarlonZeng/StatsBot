@@ -20,7 +20,7 @@ Website is entirely one-page.
 * Databases queries
 
 ## Usuage
-User will search a summoner's name and various statistics from Riot's API will be returned. Summoner must be ranked and must be playing in the current season.
+User will search a summoner's name and various statistics from Riot's API will be returned. Summoner must be ranked and must be playing in the current season. Small bug: sometimes the results page won't load, no problem, there is another search bar on the results page that works perfectly -- just retype summoner name. Page sometimes doesn't load due to my crappy frontend web skills.
 
 ## How to run
 1. Download nginx, mongodb, and pm2 from their respective sources (nginx website, mongodb website, npm)
