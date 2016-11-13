@@ -30,7 +30,7 @@ User will search a summoner's name and various statistics from Riot's API will b
 4. pm2 start app1/2/3/4.js
 
 ## Service paths
-Database information will be stored in default path /var/lib/mongodb. A glimpse of what database information looks like is included in this GitHub StatsBot/db. Nginx reverse-proxying config is set up in StatsBot/nginx; simply "sudo cp -f nginx.conf /etc/nginx/nginx.conf" to copy-paste over default config file.
+Database information will be stored in default path /var/lib/mongodb. A glimpse of what database information looks like is included in this GitHub StatsBot/db. Nginx reverse-proxying config is set up in StatsBot/nginx; simply "sudo cp -f nginx.conf /etc/nginx/nginx.conf" to copy-paste over default config file. IN nginx.conf, server_name has my server's DNS, so this must be changed if used on another DNS. 
 
 ## Developer-dependency
 Microsoft Visual Studio 2015 Community was used to run & debug this project. Linux is preferred for deployment, but Microsoft VS 2015 is by far the best IDE.
