@@ -23,11 +23,14 @@ Website is entirely one-page.
 User will search a summoner's name and various statistics from Riot's API will be returned. Summoner must be ranked and must be playing in the current season.
 
 ## How to run
-1. Set app.js as Node.js start-up file.
-2. Start mongodb service
-3. Start Nginx
+1. Download nginx, mongodb, and pm2 from their respective sources (nginx website, mongodb website, npm)
+2. Start mongodb service (sudo service mongodb start)
+3. Start Nginx (sudo service nginx start)
 ~~4. unix command: "PORT=54321 pm2 start app1.js" 2..2. 3..3, etc. (multi-server).~~
-4. pm2 start app1/2/3/4
+4. pm2 start app1/2/3/4.js
+
+## Service paths
+Database information will be stored in default path /var/lib/mongodb. A glimpse of what database information looks like is included in this GitHub StatsBot/db. Nginx reverse-proxying config is set up in StatsBot/nginx; simply "sudo cp -f nginx.conf /etc/nginx/nginx.conf" to copy-paste over default config file.
 
 ## Developer-dependency
 Microsoft Visual Studio 2015 Community was used to run & debug this project. Linux is preferred for deployment, but Microsoft VS 2015 is by far the best IDE.
