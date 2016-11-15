@@ -14,10 +14,15 @@ Website is entirely one-page.
 > Currently, Angular.js is not employed yet, but may not ever need (jQuery is an alternative).
 
 ## Techniques involved
-* Ajax calls
+* Ajax calls (for HTTP get/post methods)
+* Promise objects and methods
 * JSON parsing
 * File systems
-* Databases queries
+* Database connections and queries
+* Regex string parsing
+* Interfacing with external data structures (queue)
+* Interfacing with multiple external APIs (Riot Games, Google Charts)
+* Serving multiple servers, load balancing, caching via Nginx
 
 ## Usuage
 User will search a summoner's name and various statistics from Riot's API will be returned. Summoner must be ranked and must be playing in the current season. Small bug: sometimes the results page won't load, no problem, there is another search bar on the results page that works perfectly -- just retype summoner name. Page sometimes doesn't load due to my crappy frontend web skills.
