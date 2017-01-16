@@ -1,6 +1,8 @@
 ﻿# StatsBot
 StatsBot Website
 
+http://statsbot.warloncs.net/
+
 ## Overview
 StatsBot is a website aimed at crawling Riot's API and returning particular statistics aimed at determining the skills of the searched current-season ranked player.
 
