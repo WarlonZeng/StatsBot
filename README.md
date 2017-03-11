@@ -1,4 +1,4 @@
-﻿# StatsBot
+# StatsBot
 StatsBot Website
 
 http://statsbot.warloncs.net/
