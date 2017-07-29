@@ -1,6 +1,9 @@
 # StatsBot
 StatsBot Website
 
+# WEBSITE IS SHUT DOWN
+Hosting the web app exceeded my AWS credits and actually costed me quite a fortune :(
+
 http://statsbot.warloncs.net/
 
 ## Overview
