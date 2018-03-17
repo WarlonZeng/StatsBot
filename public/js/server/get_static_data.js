@@ -3,7 +3,7 @@
 // Clients will not be able to see the key.
 
 var request = require('request');
-var api_key = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7';
+var api_key = 'RGAPI-5751fc7b-9e99-4b1e-b2d1-b4e48590b379';
 var static_data_url = 'https://' + 'global.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=' + api_key;
 var static_data = { data: {} };
 

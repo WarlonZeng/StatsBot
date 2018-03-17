@@ -7,7 +7,7 @@ var static_data_promise = require('./get_static_data');  // retrieve promise fro
 var db_promise = require('./initialize_database'); // retrieve database promise from async database operation.
 var service = require('./check_service.js'); // retrieve custom+ queue.
 
-var api_key = 'f7ac9407-3955-4bf9-81ab-42b0945ab1f7'; // critical sensitive data - api key
+var api_key = 'RGAPI-5751fc7b-9e99-4b1e-b2d1-b4e48590b379'; // critical sensitive data - api key
 var static_data = {}; // container variable for static data 
 var collection; // container variable for database collection
 var summoner_id_query_value = { '$exists': true }; // it is a fixed value that is part of every query object. 
@@ -104,30 +104,41 @@ module.exports = function (app) { // embrace async callback hell
     app.post('/public/js/server/post_initialize_data.js', function (req, res) {
         var region = req.body.region; // summoner's region
         var summoner_name = req.body.summoner_name; // summoner's name
-        var summoner_id = 0;
-        var summoner_id_query = {}; // container for queries (is used and recycled)
-        summoner_id_query[summoner_name] = summoner_id_query_value; // { 'yinhei' : { $exists : true } }
+        var account_id = 0;
+        var accountid_query = {}; // container for queries (is used and recycled)
+        accountid_query[summoner_name] = summoner_id_query_value; // { 'yinhei' : { $exists : true } }
 
-        collection.findOne(summoner_id_query, function (err, doc) {
-            if (err) throw err;
+        collection.findOne(accountid_query, function (err, doc) {
+            if (err) 
+				throw err;
             else if (doc == null) {
                 if (service.enqueue().status) { // enqueue for 1st api call: get id
-                    var summoner_id_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.4/summoner/by-name/' + summoner_name + '?api_key=' + api_key; // defined with Client input region, name
-
+					var summoner_id_url = 'https://na1' + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + summoner_name + '?api_key=' + api_key; // defined with Client input region, name
+					
+					console.log(summoner_name);
+					console.log(summoner_id_url);
+					
                     request({ url: summoner_id_url, json: true }, function (error, response, body) { // 1st async func
-                        if (error) throw (error);
+						
+						//console.log(response.body);
+						
+                        if (error) 
+							throw (error);
                         else if (!error && response.statusCode === 200) { // may return bad request if specified name doesn't exist (typo: Client's fault).
-                            summoner_id = body[summoner_name].id;
-
-                            summoner_id_query[summoner_name] = summoner_id;
-                            collection.update(summoner_id_query, summoner_id_query, { upsert: true }); // insert into database if not found
+                            
+							console.log(body.id);
+							account_id = body.accountId;
+							
+                            accountid_query[summoner_name] = account_id;
+                            collection.update(accountid_query, accountid_query, { upsert: true }); // insert into database if not found
 
                             if (service.enqueue().status) { // enqueue for 2nd api call: get ranked data
-                                var ranked_data_url = 'https://' + region + '.api.pvp.net/api/lol/' + region + '/v1.3/stats/by-summoner/' + summoner_id + '/ranked?season=SEASON2016&api_key=' + api_key;
+								var ranked_data_url = 'https://na1 ' + '.api.riotgames.com/lol/match/v3/matchlists/by-account/' + account_id + '?api_key=' + api_key;
                                 //console.log(service.line);
 
                                 request({ url: ranked_data_url, json: true }, function (error, response, body) { // 2nd async func, rqeuires information from 1st async to send
-                                    if (error) throw (error);
+                                    if (error) 
+										throw (error);
                                     else if (!error && response.statusCode === 200) {
                                         var ranked_data = process_ranked_data(body);
                                         res.send({ ranked_data_processed: ranked_data, version: static_data.version });
