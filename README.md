@@ -10,10 +10,12 @@ Example below: Doublelift's ranked visualizations Summer 2016
 1. Win rate
 2. Pick rate
 3. Unique character identification
+
 ![alt text](https://github.com/WarlonZeng/StatsBot/blob/master/product_visual.png "Win rate vs. Pick rate and which champion it is")
 
 ## System design
 Users preferably use chrome to access my service. Nginx serves my node.js app. User actions on the frontend of node.js app calls services in the backend. Backend gets information from external API (Riot's API), calculate statistics, stores some redundant data in mongoDB to serve data faster, and passes the data to frontend. Frontend then displays the data in a nice and user-friendly visualization from Google's visualization API. Service queue is a custom built queue using arrays to store data and put a limit per product-wide request, because of API rate limits. At the time I needed a queue and apparently node.js didn't have one at the time.
+
 ![alt text](https://github.com/WarlonZeng/StatsBot/blob/master/StatsBot_architecture.png "Browser->Frontend->Backend->DB")
 
 ## Overview
